@@ -5,14 +5,14 @@ require 'pp'
 url = 'https://data.winnipeg.ca/resource/d3jk-hb6j.json?$limit=306000'
 uri = URI(url)
 response = Net::HTTP.get(uri)
-tree_data = JSON.parse(response) # Convert JSON data into Ruby data.
+trees_data = JSON.parse(response) # Convert JSON data into Ruby data.
 #pp tree_data # pp stands for pretty print.
 
-ash_count = 0
-tree_data.each do |tree|
+ash_tree_count = 0
+trees_data.each do |tree|
     if tree['common_name'] && tree['common_name'].include?('ash')
-        ash_count += 1
+        ash_tree_count += 1
     end
 end
 
-puts "Total ash trees: #{ash_count}."
+puts "Total ash trees: #{ash_tree_count}."
